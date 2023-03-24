@@ -18,7 +18,7 @@
 
 
 ## Vocab/Reminders
-### Chapter 3
+### Chapter 2
    * Cargo.toml dependencies use semantic versioning for specifying version numbers
 
    * Cargo.lock allows for reproducible builds. Cargo figures out all the versions of the dependencies that fit the criteria and writes them to the Cargo.lock file. When rebuilding again, Cargo will see the .lock file and look towards there for figuring out versions again unless specified otherwise to change the version
