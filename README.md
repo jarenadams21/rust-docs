@@ -2,6 +2,8 @@
     For tracking my progression through Rust documentation
 
 ## Rust Project Resources & Examples
+    * Rust Project Playlist
+        https://www.youtube.com/playlist?list=PL5TgJsqBELcOamwXabwjbXgAg3cucBjWY
     * Awesome Rust
         https://github.com/rust-unofficial/awesome-rust
     * Rust Standard Library Docs
@@ -46,8 +48,15 @@
             x + 1
         }
         y in this case is 4
-### Chapter 4 - https://doc.rust-lang.org/beta/book/ch04-00-understanding-ownership.html
 
-    Understanding Ownership
+### Chapter 4  https://doc.rust-lang.org/beta/book/ch04-00-understanding-ownership.html
+
+    * Ownership addresses stack and heap allocation
+    
+    * Ownership Rules:
+        i. Each value in Rust has an owner.
+        ii. There can only be one owner at a time.
+        iii. When the owner goes out of scope, the value will be dropped.
+    
 
     
