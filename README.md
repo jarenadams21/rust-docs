@@ -31,4 +31,19 @@
         (but it also has type inference)
 
    * Shadowing lets us reuse the same variable name and pass in a new value. Often used when you want to convert a value from one type to another type
+### Chapter 3
+
+   * Data Types
+     https://doc.rust-lang.org/book/ch03-02-data-types.html
+     <br>
+     * Integers
+        - signed(i) and unsigned(u) denote pos and neg integers or just pos integers
+    * Statements are instructions that perform some action and do not return a value.
+        Semi-colons end statements
+    * Expressions evaluate to a resultant value. Let’s look at some examples.
+        let y = {
+            let x = 3;
+            x + 1
+        }
+        y in this case is 4
     
