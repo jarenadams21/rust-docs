@@ -1,6 +1,11 @@
 # Rust Docs Repository
     For tracking my progression through Rust documentation
 
+## Frameworks
+    * Tide
+        https://www.youtube.com/watch?v=ZbhzLP3vnkg
+    
+
 ## Rust Project Resources & Examples
     * Rust Project Playlist
         https://www.youtube.com/playlist?list=PL5TgJsqBELcOamwXabwjbXgAg3cucBjWY
