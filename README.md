@@ -86,6 +86,8 @@
     Let’s recap what we’ve discussed about references: 
         i. At any given time, you can have either one mutable reference or any number of immutable references. 
         ii. References must always be valid.
+    * Slices let you reference a contiguous sequence of elements in a collection rather than the whole collection. A slice is a kind of reference, so it does not have ownership.
+    * String literals are immutable, and an &str parameter type will allow both Strings and string literals.
 
         
 
