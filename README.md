@@ -62,6 +62,31 @@
         i. Each value in Rust has an owner.
         ii. There can only be one owner at a time.
         iii. When the owner goes out of scope, the value will be dropped.
-    
+
+    * In order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the contents. This means:
+        i. The memory must be requested from the memory allocator at runtime
+        ii. We need a way of returning this memory to the allocator when we're done with our String
+        <br>
+        --> Part 1 is accomplished by 'String::from', its implementation requests the memory it needs
+        --> For part 2, we must think about pairing exactly one allocate with exactly one free at all times
+    * When a variable goes out of scope, Rust calls the 'drop' function to return the memory
+        Similar to RAII (Resource Acquisition Is Initialization) patterns in C++
+    * In this example: 
+        let s1 = String::from("hello");
+        let s2 = s1;
+        
+        --> s2 has overidden s1 as the new pointer to the data in the heap, and s1 is no longer a valid pointer. Trying to println s1 in this case would cause a compiler error. "s1 moved into s2"
+    * Types cannot have both the 'Copy' trait and the 'Drop' trait
+    * Any group of simple scalar values can implement Copy, and nothing that requires allocation or is some form of resource can implement Copy
+    All the integer types, such as u32.
+    * The Boolean type, bool, with values true and false. All the floating-point types, such as f64. The character type, char. Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
+    * A reference is like a pointer in that it’s an address we can follow to access the data stored at that address; that data is owned by some other variable. Unlike a pointer, a reference is guaranteed to point to a valid value of a particular type for the life of that reference.
+    * References are immutable! You don't own them. References can be made mutable, but only one at a time. If an immutable reference exists, a mutable reference cannot exist.
+    The Rules of References:
+    Let’s recap what we’ve discussed about references: 
+        i. At any given time, you can have either one mutable reference or any number of immutable references. 
+        ii. References must always be valid.
+
+        
 
     
