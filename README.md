@@ -139,7 +139,7 @@
 
 * 'match' arm patterns MUST cover all possibilities
 
-        The following fails as the 'None case isn't covered: 
+        The following fails as the 'None' case isn't covered: 
 
         fn plus_one(x: Option<i32>) -> Option<i32> {
             match x {
@@ -184,7 +184,7 @@
         fn add_fancy_hat() {}
         fn remove_fancy_hat() {}
 
-* 
+* You can think of if let as syntax sugar for a match that runs code when the value matches one pattern and then ignores all other values.
 
 
 
