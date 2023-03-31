@@ -4,6 +4,10 @@
 ## Frameworks
     * Tide
         https://www.youtube.com/watch?v=ZbhzLP3vnkg
+
+## Official Docs
+    * Appendix C
+        https://doc.rust-lang.org/beta/book/appendix-03-derivable-traits.html
     
 
 ## Rust Project Resources & Examples
@@ -88,6 +92,26 @@
         ii. References must always be valid.
     * Slices let you reference a contiguous sequence of elements in a collection rather than the whole collection. A slice is a kind of reference, so it does not have ownership.
     * String literals are immutable, and an &str parameter type will allow both Strings and string literals.
+
+# Chapter 5
+    * Associated functions that aren’t methods are often used for constructors that will return a new instance of the struct.
+         i. impl Rectangle {
+             fn square(size: u32) -> Self {
+                 Self {
+                     width: size,
+                     height: size,
+                    }  
+                }
+            }
+            
+        ii. To call this associated function, we use the :: syntax with the struct name; let sq = Rectangle::square(3); is an example. This function is namespaced by the struct: the :: syntax is used for both associated functions and namespaces created by modules.
+
+
+    * Automatic dereferencing and referencing
+        i. Given the receiver and name of a method, Rust can figure out definitively whether the method is reading (&self), mutating (&mut self), or consuming (self).
+    
+    * You use '.' if you’re calling a method on the object directly and '->' if you’re calling the method on a pointer to the object and need to dereference the pointer first. In other words, if object is a pointer, object->something() is similar to (*object).something()
+    
 
         
 
