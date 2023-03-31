@@ -118,13 +118,13 @@
 * In his 2009 presentation “Null References: The Billion Dollar Mistake,” Tony Hoare, the inventor of null, has this to say:
 
         I call it my billion-dollar mistake. At that time, I was designing the first comprehensive type system for references in an object-oriented language. My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
-* The problem isn’t really with the concept but with the particular implementation. As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent. This enum is Option<T>, and it is defined by the standard library, T being a generic type parameter
+* The problem isn’t really with the concept but with the particular implementation. As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent. This enum is Option of type T, and it is defined by the standard library, T being a generic type parameter
 
         enum Option<T> {
              None,
              Some(T),
         }  
-* Option<T> != T
+* Option of type T != T
 
         Compiler error:
          let x: i8 = 5;
@@ -134,6 +134,59 @@
 * Option documentation: https://doc.rust-lang.org/beta/std/option/enum.Option.html
 
 * The match expression is a control flow construct that does just this when used with enums: it will run different code depending on which variant of the enum it has, and that code can use the data inside the matching value.
+
+* Think of a match expression as being like a coin-sorting machine: coins slide down a track with variously sized holes along it, and each coin falls through the first hole it encounters that it fits into. In the same way, values go through each pattern in a match, and at the first pattern the value “fits,” the value falls into the associated code block to be used during execution.
+
+* 'match' arm patterns MUST cover all possibilities
+
+        The following fails as the 'None case isn't covered: 
+
+        fn plus_one(x: Option<i32>) -> Option<i32> {
+            match x {
+            Some(i) => Some(i + 1),
+            }
+        }
+* Catch-all Paterns must be used as the last option, and Rust will throw a compiler error if code is put after one
+
+        let dice_roll = 9;
+        match dice_roll {
+            3 => add_fancy_hat(),
+            7 => remove_fancy_hat(),
+        other => move_player(other),
+        }
+
+        fn add_fancy_hat() {}
+        fn remove_fancy_hat() {}
+        fn move_player(num_spaces: u8) {}
+
+* Rust also has a pattern we can use when we want a catch-all but don’t want to use the value in the catch-all pattern: '_' is a special pattern that matches any value and does not bind to that value.
+
+        let dice_roll = 9;
+        match dice_roll {
+            3 => add_fancy_hat(),
+            7 => remove_fancy_hat(),
+            _ => reroll(),
+        }
+
+        fn add_fancy_hat() {}
+        fn remove_fancy_hat() {}
+        fn reroll() {}
+
+* Unit value: () is an empty tuple type, telling Rust we don't want to run any code in the catch all case
+
+        let dice_roll = 9;
+        match dice_roll {
+            3 => add_fancy_hat(),
+            7 => remove_fancy_hat(),
+            _ => (),
+        }
+
+        fn add_fancy_hat() {}
+        fn remove_fancy_hat() {}
+
+* 
+
+
 
 
 
