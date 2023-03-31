@@ -29,7 +29,7 @@
 
 
 ## Vocab/Reminders
-### Chapter 2
+### Chapter 2 - Cargo
    * Cargo.toml dependencies use semantic versioning for specifying version numbers
 
    * Cargo.lock allows for reproducible builds. Cargo figures out all the versions of the dependencies that fit the criteria and writes them to the Cargo.lock file. When rebuilding again, Cargo will see the .lock file and look towards there for figuring out versions again unless specified otherwise to change the version
@@ -42,7 +42,7 @@
         (but it also has type inference)
 
    * Shadowing lets us reuse the same variable name and pass in a new value. Often used when you want to convert a value from one type to another type
-### Chapter 3
+### Chapter 3 - Data Types
 
    * Data Types
      https://doc.rust-lang.org/book/ch03-02-data-types.html
@@ -58,9 +58,9 @@
         }
         y in this case is 4
 
-### Chapter 4  https://doc.rust-lang.org/beta/book/ch04-00-understanding-ownership.html
+### Chapter 4 - Ownership,  https://doc.rust-lang.org/beta/book/ch04-00-understanding-ownership.html
 
-    * Ownership addresses stack and heap allocation
+* Ownership addresses stack and heap allocation
     
     * Ownership Rules:
         i. Each value in Rust has an owner.
@@ -93,8 +93,8 @@
     * Slices let you reference a contiguous sequence of elements in a collection rather than the whole collection. A slice is a kind of reference, so it does not have ownership.
     * String literals are immutable, and an &str parameter type will allow both Strings and string literals.
 
-# Chapter 5
-    * Associated functions that aren’t methods are often used for constructors that will return a new instance of the struct.
+# Chapter 5 - Structs
+* Associated functions that aren’t methods are often used for constructors that will return a new instance of the struct.
          i. impl Rectangle {
              fn square(size: u32) -> Self {
                  Self {
@@ -104,14 +104,39 @@
                 }
             }
             
-        ii. To call this associated function, we use the :: syntax with the struct name; let sq = Rectangle::square(3); is an example. This function is namespaced by the struct: the :: syntax is used for both associated functions and namespaces created by modules.
+     ii. To call this associated function, we use the :: syntax with the struct name; let sq = Rectangle::square(3); is an example. This function is namespaced by the struct: the :: syntax is used for both associated functions and namespaces created by modules.
 
 
-    * Automatic dereferencing and referencing
+* Automatic dereferencing and referencing
         i. Given the receiver and name of a method, Rust can figure out definitively whether the method is reading (&self), mutating (&mut self), or consuming (self).
     
-    * You use '.' if you’re calling a method on the object directly and '->' if you’re calling the method on a pointer to the object and need to dereference the pointer first. In other words, if object is a pointer, object->something() is similar to (*object).something()
-    
+* You use '.' if you’re calling a method on the object directly and '->' if you’re calling the method on a pointer to the object and need to dereference the pointer first. In other words, if object is a pointer, object->something() is similar to (*object).something()
+
+# Chapter 6 - Enums & Pattern Matching, https://doc.rust-lang.org/beta/book/ch06-00-enums.html
+
+* The Option type encodes the very common scenario in which a value could be something or it could be nothing.
+* In his 2009 presentation “Null References: The Billion Dollar Mistake,” Tony Hoare, the inventor of null, has this to say:
+
+        I call it my billion-dollar mistake. At that time, I was designing the first comprehensive type system for references in an object-oriented language. My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn’t resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+* The problem isn’t really with the concept but with the particular implementation. As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent. This enum is Option<T>, and it is defined by the standard library, T being a generic type parameter
+
+        enum Option<T> {
+             None,
+             Some(T),
+        }  
+* Option<T> != T
+
+        Compiler error:
+         let x: i8 = 5;
+         let y: Option<i8> = Some(5);
+         let sum = x + y;
+
+* Option documentation: https://doc.rust-lang.org/beta/std/option/enum.Option.html
+
+* The match expression is a control flow construct that does just this when used with enums: it will run different code depending on which variant of the enum it has, and that code can use the data inside the matching value.
+
+
+
 
         
 
