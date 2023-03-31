@@ -186,6 +186,22 @@
 
 * You can think of if let as syntax sugar for a match that runs code when the value matches one pattern and then ignores all other values.
 
+# Chapter 7 - https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html
+
+* A crate is the smallest amount of code that the Rust compiler considers at a time. (crates == library)
+
+* A crate can come in one of two forms: a binary crate or a library crate. Binary crates are programs you can compile to an executable that you can run, such as a command-line program or a server. Each must have a function called main that defines what happens when the executable runs. All the crates we’ve created so far have been binary crates.
+
+* Library crates don’t have a main function, and they don’t compile to an executable. Instead, they define functionality intended to be shared with multiple projects. (e.g., rand crate)
+
+* A package is a bundle of one or more crates that provides a set of functionality. A package contains a Cargo.toml file that describes how to build those crates.
+
+* How modules work - https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
+
+* There is an implicit module named 'crate' at the beginning of module trees
+        
+        
+
 
 
 
