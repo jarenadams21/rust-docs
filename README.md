@@ -8,6 +8,8 @@
 ## Official Docs
     * Appendix C
         https://doc.rust-lang.org/beta/book/appendix-03-derivable-traits.html
+    * Rust API Guidelines
+        https://rust-lang.github.io/api-guidelines/
     
 
 ## Rust Project Resources & Examples
