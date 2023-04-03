@@ -2,7 +2,7 @@
     For tracking my progression through Rust documentation
 
 ## Projects
-[I'm an inline-style link](https://www.somewebsite.com)
+[spell-walker](https://github.com/jarenadams21/spell-walker)
 
 ## Frameworks
     * Tide
