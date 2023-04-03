@@ -231,7 +231,77 @@
         // do stuff with v
         } // <- v goes out of scope and is freed here
 
-* 
+*  In Chapter 4, we talked about string slices, which are references to some UTF-8 encoded string data stored elsewhere. String literals, for example, are stored in the program’s binary and are therefore string slices.
+
+* The [ String ] type, which is provided by Rust’s standard library rather than coded into the core language, is a growable, mutable, owned, UTF-8 encoded string type.
+
+* Many of the same operations available with Vec are available with String as well, because String is actually implemented as a wrapper around a vector of bytes with some extra guarantees, restrictions, and capabilities.
+    
+        let mut s = String::new();
+
+* A String can grow in size and its contents can change, just like the contents of a Vec (of type T), if you push more data into it. In addition, you can conveniently use the + operator or the format! macro to concatenate String values.
+
+* push_str method takes a string slice because we don't necessarily want to take ownership of the parameter. If the push_str method took ownership of s2, we wouldn’t be able to print its value on the last line. However, this code works as we’d expect!
+
+        let mut s1 = String::from("foo");
+        let s2 = "bar";
+        s1.push_str(s2);
+        println!("s2 is {s2}");
+
+* In the standard library, you'll see add defined using generics and associated types. Here, we’ve substituted in concrete types, which is what happens when we call this method with String values. The [ + ] operator uses the [ add ] method, whose signature looks like:
+
+        fn add(self, s: &str) -> String {
+
+* When we call the add method, Rust uses a deref coercion, (see string_concat module in chapter-8)
+
+* The format! macro works like println!, but instead of printing the output to the screen, it returns a String with the contents. (see string_concat module in chapter-8)
+
+* See "Internal Representation" section in chapter 8.2, "Storing UTF-8 Encoded Text with Strings" for an explanation about string memory storage in rust
+
+* If we were to try to slice only part of a character’s bytes with something like &hello[ 0..1 ], Rust would panic at runtime. Rather than indexing using [] with a single number, you can use [] with a range to create a string slice containing particular bytes:
+
+        let hello = "Здравствуйте";
+
+        let s = &hello[0..4];
+
+* Be careful with string slices as they crash the program. Be sure to remember that valid Unicode scalar values may be made up of more than 1 byte.
+
+* Rust has chosen to make the correct handling of String data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data upfront. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle.
+
+* Be sure to check out the documentation for useful methods like [ contains ] for searching in a string and [ replace ] for substituting parts of a string with another string.
+
+* The last of our common collections is the hash map. The type HashMap>K, V< stores a mapping of keys of type K to values of type V using a hashing function, which determines how it places these keys and values into memory. 
+
+* Just like vectors, hash maps store their data on the heap.
+
+* Like vectors, hash maps are homogeneous: all of the keys must have the same type as each other, and all of the values must have the same type.
+
+* The get method returns an Option<&V>; if there’s no value for that key in the hash map, get will return None. This program handles the Option by calling copied to get an Option>i32< rather than an Option<&i32>, then unwrap_or to set score to zero if scores doesn't have an entry for the key.
+
+        use std::collections::HashMap;
+
+        let mut scores = HashMap::new();
+
+        scores.insert(String::from("Blue"), 10);
+        scores.insert(String::from("Yellow"), 50);
+
+        let team_name = String::from("Blue");
+        let score = scores.get(&team_name).copied().unwrap_or(0);
+
+* Inserting with a key that is associated to an existing value will just replace the existing value with the new one that is to be inserted (the second insertion)
+
+* Hash maps have a special API for this called entry that takes the key you want to check as a parameter. The return value of the entry method is an enum called Entry that represents a value that might or might not exist. 
+
+* By default, HashMap uses a hashing function called SipHash that can provide resistance to Denial of Service (DoS) attacks involving hash tables
+
+        https://en.wikipedia.org/wiki/SipHash
+
+* See the Summary in 8.3 "Storing Keys with Associated Values in Hash Maps" for exercises on the common collections in chapter 8
+
+
+
+
+
 
 
 
