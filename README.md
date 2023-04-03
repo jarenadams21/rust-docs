@@ -1,6 +1,9 @@
 # Rust Docs Repository
     For tracking my progression through Rust documentation
 
+## Projects
+    * [spell-walker](https://github.com/jarenadams21/spell-walker)
+
 ## Frameworks
     * Tide
         https://www.youtube.com/watch?v=ZbhzLP3vnkg
