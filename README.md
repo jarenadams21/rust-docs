@@ -202,7 +202,36 @@
 
 * There is an implicit module named 'crate' at the beginning of module trees
         
-        
+
+# Chapter 8 - https://doc.rust-lang.org/beta/book/ch08-00-common-collections.html
+
+* A [ vector ] allows you to store a variable number of values next to each other.
+
+* A [ string ] is a collection of characters. We’ve mentioned the String type previously, but in this chapter we’ll talk about it in depth.
+
+* A [hash map] allows you to associate a value with a particular key. It’s a particular implementation of the more general data structure called a map.
+
+* Because vectors put the values next to each other in memory, adding a new element onto the end of the vector might require allocating new memory and copying the old elements to the new space, if there isn’t enough room to put all the elements next to each other where the vector is currently stored. In that case, the reference to the first element would be pointing to deallocated memory. The borrowing rules prevent programs from ending up in that situation:
+
+        let mut v = vec![1, 2, 3, 4, 5];
+
+        let first = &v[0];
+
+        v.push(6);
+
+        println!("The first element is: {first}");    
+
+*  Using an enum plus a match expression means that Rust will ensure at compile time that every possible case is handled
+
+* Like any other struct, a vector is freed when it goes out of scope. The borrow checker ensures that any references to contents of a vector are only used while the vector itself is valid. (the vector's contents are also dropped)
+
+            {
+        let v = vec![1, 2, 3, 4];
+
+        // do stuff with v
+        } // <- v goes out of scope and is freed here
+
+* 
 
 
 
