@@ -7,6 +7,7 @@
 ## Frameworks
     * Tide
         https://www.youtube.com/watch?v=ZbhzLP3vnkg
+    * Leptos (full-stack framework for web apps)
 
 ## Official Docs
     * Appendix C
